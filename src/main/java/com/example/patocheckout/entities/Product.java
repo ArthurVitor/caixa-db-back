@@ -3,6 +3,9 @@ package com.example.patocheckout.entities;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 
@@ -11,22 +14,19 @@ import jakarta.persistence.Table;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    @NotBlank
+    @Column(nullable = false)
     private String name;
 
-    @Column
-    @NotBlank
+    @Column(nullable = false)
     private Float price;
 
-    @Column
-    @NotBlank
+    @Column(nullable = false)
     private String barcode;
 
-    @Column
+    @Column(nullable = true)
     private LocalDate discontinuation_date;
 
     public Long getId() {
