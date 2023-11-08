@@ -1,11 +1,19 @@
+# Ignorar application.properties
+application.properties
+
+# Ignorar HELP.md
 HELP.md
+
+# Ignorar diretório .gradle
 .gradle
+
+# Ignorar o diretório build/ e seus subdiretórios
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### STS ###
+# Ignorar os arquivos e diretórios relacionados ao STS (Spring Tool Suite)
 .apt_generated
 .classpath
 .factorypath
@@ -17,7 +25,7 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### IntelliJ IDEA ###
+# Ignorar os arquivos e diretórios relacionados ao IntelliJ IDEA
 .idea
 *.iws
 *.iml
@@ -26,12 +34,9 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-### NetBeans ###
+# Ignorar os arquivos e diretórios relacionados ao NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
+/.
