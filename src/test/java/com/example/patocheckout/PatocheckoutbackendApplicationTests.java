@@ -1,10 +1,10 @@
-package com.example.caixaDBbackend;
+package com.example.patocheckout;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CaixaDbBackendApplicationTests {
+class PatocheckoutbackendApplicationTests {
 
 	@Test
 	void contextLoads() {

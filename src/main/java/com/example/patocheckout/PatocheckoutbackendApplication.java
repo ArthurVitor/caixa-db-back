@@ -1,13 +1,13 @@
-package com.example.caixaDBbackend;
+package com.example.patocheckout;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CaixaDbBackendApplication {
+public class PatocheckoutbackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CaixaDbBackendApplication.class, args);
+		SpringApplication.run(PatocheckoutbackendApplication.class, args);
 	}
 
 }
