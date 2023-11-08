@@ -21,7 +21,7 @@ public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * Relacionamento 1 para muitos com a entidade ItemSell
@@ -58,6 +58,16 @@ public class Sale {
         this.saleDate = LocalDate.now();
     }
 
+    /**
+     * Retorna o id da venda
+     * 
+     * @return id da venda
+     */
+
+    public Long getId() {
+        return id;
+    }
+
     public void addItem(ItemSell item) {
         this.items.add(item);
     }
@@ -70,8 +80,25 @@ public class Sale {
         this.paymentMethod = paymentMethod;
     }
 
+    public List<ItemSell> getItems() {
+        return items;
+    }
+
+    public Cashier getCashier() {
+        return cashier;
+    }
+
+    /**
+     * Retorna o subtotal da vend, que é 
+     * Composto pela soma do preço de cada item menos o desconto aplicado, multiplicado pela quantidade de itens
+     * 
+     * @return Subtotal da venda
+     */
+
     public double getSubtotal() {
-        return /* this.items.stream().mapToDouble(item -> item.getSubtotal()).sum() */ 0;
+        return this.items.stream()
+                .mapToDouble(item -> (item.getProduct_id().getPrice() - item.getDiscount_amount()) * item.getQuantity())
+                .sum();
     }
 
     @Override
