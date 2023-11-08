@@ -1,8 +1,5 @@
 package com.example.patocheckout.entities;
-
 import java.time.LocalDate;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +13,7 @@ public class Cashier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    protected Long id;
 
     @Column(nullable = false)
     private boolean isOpen;
@@ -26,14 +23,45 @@ public class Cashier {
 
     private LocalDate closeDate;
 
-    public void openCashier() {
-        this.isOpen = true;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public void setOpenDate(LocalDate openDate) {
+        this.openDate = openDate;
+    }
+
+    public void setCloseDate(LocalDate closeDate) {
+        this.closeDate = closeDate;
+    }  
+
+    public Long getId() {
+        return id;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public LocalDate getOpenDate() {
+        return openDate;
+    }
+
+    public LocalDate getCloseDate() {
+        return closeDate;
+    }
+
+    public void openCashier(){
+        this.isOpen = true; 
         this.openDate = LocalDate.now(); 
     }
 
-    public void closeCashier() {
-        this.isOpen = false;
+    public void closeCashier(){
+        this.isOpen = false; 
         this.closeDate = LocalDate.now(); 
     }
-
 }
