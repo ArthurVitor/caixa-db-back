@@ -32,6 +32,14 @@ public class Sale {
     private List<ItemSell> items;
 
     /**
+     * Relacionamento muitos para 1 com entidade PaymentMethod
+     */
+
+    @ManyToOne
+    @JoinColumn(name = "payment_method_id")
+    private PaymentMethod paymentMethod;
+
+    /**
      * Relacionamento muitos para 1 com entidade Cashier
      */
 
@@ -39,13 +47,15 @@ public class Sale {
     @JoinColumn(name = "cashier_id")
     private Cashier cashier;
 
-    private LocalDate saleDate = LocalDate.now();
+    private LocalDate saleDate;
 
-    protected Sale() {}
+    protected Sale() {
+    }
 
     public Sale(Cashier cashier) {
         this.items = new ArrayList<>();
         this.cashier = cashier;
+        this.saleDate = LocalDate.now();
     }
 
     public void addItem(ItemSell item) {
@@ -56,8 +66,12 @@ public class Sale {
         this.items.remove(itemSell);
     }
 
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
     public double getSubtotal() {
-        return /*this.items.stream().mapToDouble(item -> item.getSubtotal()).sum()*/ 0;
+        return /* this.items.stream().mapToDouble(item -> item.getSubtotal()).sum() */ 0;
     }
 
     @Override
