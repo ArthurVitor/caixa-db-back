@@ -3,6 +3,7 @@ package com.example.patocheckout.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,29 +17,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Product> findProductById(long id) {
+    public Optional<Product> findProductById(long id) throws DataAccessException {
         return productRepository.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Product findProductByBarCode(String barcode) {
-        return productRepository.findByBarCode(barcode);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Product> findAllProducts() {
+    public List<Product> findAllProducts() throws DataAccessException {
         return productRepository.findAll();
     }
 
     @Override
-    public void saveProduct(Product product) {
+    public void saveProduct(Product product) throws DataAccessException {
         productRepository.save(product);
     }
 
     @Override
-    public void deleteProduct(Product product) {
+    public void deleteProduct(Product product) throws DataAccessException {
         productRepository.delete(product);
     }
 }

@@ -9,5 +9,4 @@ import com.example.patocheckout.entities.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     
-    Product findByBarCode(String barcode) throws DataAccessException;
 }
