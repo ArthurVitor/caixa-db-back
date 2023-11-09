@@ -1,6 +1,5 @@
-package com.example.patocheckout.service;
+package com.example.patocheckout.service.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.data.domain.Pageable;
@@ -9,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.patocheckout.entities.Sale;
 import com.example.patocheckout.repositories.SaleRepository;
+import com.example.patocheckout.service.SaleService;
 
 @Service
 public class SaleServiceImpl implements SaleService {

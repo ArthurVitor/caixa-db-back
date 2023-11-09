@@ -1,10 +1,14 @@
-package com.example.patocheckout.service;
+package com.example.patocheckout.service.impl;
+
 import java.util.Collection;
+
 import com.example.patocheckout.entities.Cashier;
 import com.example.patocheckout.repositories.CashierRepository;
+import com.example.patocheckout.service.CashierService;
+
 import org.springframework.transaction.annotation.Transactional;
 
-public class CashierServiceImpl implements CashierService{
+public class CashierServiceImpl implements CashierService {
 
     private CashierRepository cashierRepository;
 

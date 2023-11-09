@@ -1,4 +1,4 @@
-package com.example.patocheckout.service;
+package com.example.patocheckout.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.patocheckout.entities.Product;
 import com.example.patocheckout.repositories.ProductRepository;
+import com.example.patocheckout.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
