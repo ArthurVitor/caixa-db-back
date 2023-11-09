@@ -19,7 +19,7 @@ public class Cashier {
     private boolean isOpen;
 
     @Column(nullable = false)
-    private LocalDate openDate;
+    private LocalDate openDate = LocalDate.now();
 
     private LocalDate closeDate;
 

@@ -1,4 +1,5 @@
 package com.example.patocheckout.service;
+
 import java.util.Collection;
 import com.example.patocheckout.entities.Cashier;
 
