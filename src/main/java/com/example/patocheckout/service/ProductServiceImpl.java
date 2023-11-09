@@ -1,28 +1,34 @@
 package com.example.patocheckout.service;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.patocheckout.entities.Product;
 import com.example.patocheckout.repositories.ProductRepository;
 
-import jakarta.transaction.Transactional;
-
+@Service
 public class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository;
-    
+
     @Override
-    public Product findProductById(Long id) {
+    @Transactional(readOnly = true)
+    public Optional<Product> findProductById(long id) {
         return productRepository.findById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Product findProductByBarCode(String barcode) {
         return productRepository.findByBarCode(barcode);
     }
 
     @Override
-    public Collection<Product> findAllProducts() {
+    @Transactional(readOnly = true)
+    public List<Product> findAllProducts() {
         return productRepository.findAll();
     }
 

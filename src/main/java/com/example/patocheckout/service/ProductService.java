@@ -1,6 +1,7 @@
 package com.example.patocheckout.service;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
 
@@ -8,11 +9,11 @@ import com.example.patocheckout.entities.Product;
 
 public interface ProductService {
 
-    Product findProductById(Long id) throws DataAccessException;
+    Optional<Product> findProductById(long id) throws DataAccessException;
 
     Product findProductByBarCode(String barcode) throws DataAccessException;
 
-    Collection<Product> findAllProducts() throws DataAccessException;
+    List<Product> findAllProducts() throws DataAccessException;
 
     void saveProduct(Product product) throws DataAccessException;
 
