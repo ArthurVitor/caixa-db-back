@@ -2,15 +2,20 @@ package com.example.patocheckout.service;
 import java.util.Collection;
 import com.example.patocheckout.entities.Cashier;
 import com.example.patocheckout.repositories.CashierRepository;
-
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class CashierServiceImpl implements CashierService{
 
-    @Autowired
     private CashierRepository cashierRepository;
+    
+    @Autowired 
+    public CashierServiceImpl (CashierRepository cashierRepository){
+        this.cashierRepository = cashierRepository; 
+    }
 
     @Override
     @Transactional(readOnly = true)
