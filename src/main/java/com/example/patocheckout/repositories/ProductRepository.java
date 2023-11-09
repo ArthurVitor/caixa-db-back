@@ -1,6 +1,5 @@
 package com.example.patocheckout.repositories;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
