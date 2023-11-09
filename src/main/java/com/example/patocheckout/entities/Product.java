@@ -29,6 +29,15 @@ public class Product {
     @Column(nullable = true)
     private LocalDate discontinuation_date;
 
+    protected Product() {}
+
+    public Product(String name, Float price, String barcode) {
+        this.name = name;
+        this.price = price;
+        this.barcode = barcode;
+        this.discontinuation_date = null;
+    }
+
     public Long getId() {
         return id;
     }
