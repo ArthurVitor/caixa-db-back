@@ -39,13 +39,6 @@ public class Sale {
     @JoinColumn(name = "payment_method_id")
     private PaymentMethod paymentMethod;
 
-    /**
-     * Relacionamento muitos para 1 com entidade Cashier
-     */
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cashier_id")
-    private Cashier cashier;
 
     private LocalDate saleDate;
 
@@ -54,7 +47,6 @@ public class Sale {
 
     public Sale(Cashier cashier) {
         this.items = new ArrayList<>();
-        this.cashier = cashier;
         this.saleDate = LocalDate.now();
     }
 
@@ -84,13 +76,10 @@ public class Sale {
         return items;
     }
 
-    public Cashier getCashier() {
-        return cashier;
-    }
-
     /**
-     * Retorna o subtotal da vend, que é 
-     * Composto pela soma do preço de cada item menos o desconto aplicado, multiplicado pela quantidade de itens
+     * Retorna o subtotal da vend, que é
+     * Composto pela soma do preço de cada item menos o desconto aplicado,
+     * multiplicado pela quantidade de itens
      * 
      * @return Subtotal da venda
      */
@@ -103,6 +92,6 @@ public class Sale {
 
     @Override
     public String toString() {
-        return "Sale [cashier=" + cashier + ", id=" + id + ", items=" + items + ", saleDate=" + saleDate + "]";
+        return "Sale [id=" + id + ", items=" + items + ", saleDate=" + saleDate + "]";
     }
 }
