@@ -16,5 +16,5 @@ public class CashierServiceImpl implements CashierService{
     public Collection<Cashier> findByIsOpen(boolean isOpen) throws DataAccessException {
         return cashierRepository.findByIsOpen(isOpen); 
     }
-    
+
 }
