@@ -74,6 +74,11 @@ public class Cashier {
     }
 
     @Override
+    public String toString() {
+        return "Cashier [id=" + id + ", isOpen=" + isOpen + ", openDate=" + openDate + ", closeDate=" + closeDate + "]";
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
