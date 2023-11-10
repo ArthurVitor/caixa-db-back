@@ -1,4 +1,4 @@
-package com.example.patocheckout.service;
+package com.example.patocheckout.service.impl;
 
 import java.util.Collection;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.patocheckout.entities.PaymentMethod;
 import com.example.patocheckout.repositories.PaymentMethodRepository;
+import com.example.patocheckout.service.PaymentMethodService;
 
 @Service
 public class PaymentMethodServiceImpl implements PaymentMethodService {
