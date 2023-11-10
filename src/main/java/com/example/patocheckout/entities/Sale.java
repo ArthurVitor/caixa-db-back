@@ -1,10 +1,12 @@
 package com.example.patocheckout.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +41,11 @@ public class Sale {
     @JoinColumn(name = "payment_method_id")
     private PaymentMethod paymentMethod;
 
+    @Column(nullable = false)
+    private BigDecimal paidAmount;
+
+    @Column(nullable = false)
+    private BigDecimal change;
 
     private LocalDate saleDate;
 
@@ -48,6 +55,8 @@ public class Sale {
     public Sale(Cashier cashier) {
         this.items = new ArrayList<>();
         this.saleDate = LocalDate.now();
+        this.paidAmount = BigDecimal.ZERO;
+        this.change = BigDecimal.ZERO;
     }
 
     /**
@@ -72,6 +81,19 @@ public class Sale {
         this.paymentMethod = paymentMethod;
     }
 
+    public BigDecimal getPaidAmount() {
+        return paidAmount;
+    }
+
+    public BigDecimal getChange() {
+        return change;
+    }
+
+    public void pay(BigDecimal paidAmount) {
+        this.paidAmount = paidAmount;
+        this.change = paidAmount.subtract(BigDecimal.valueOf(getSubtotal()));
+    }
+
     public List<ItemSell> getItems() {
         return items;
     }
@@ -84,10 +106,65 @@ public class Sale {
      * @return Subtotal da venda
      */
 
-    public double getSubtotal() {
-        return this.items.stream()
+    public BigDecimal getSubtotal() {
+        return BigDecimal.valueOf(this.items.stream()
                 .mapToDouble(item -> (item.getProduct_id().getPrice() - item.getDiscount_amount()) * item.getQuantity())
-                .sum();
+                .sum());
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((items == null) ? 0 : items.hashCode());
+        result = prime * result + ((paymentMethod == null) ? 0 : paymentMethod.hashCode());
+        result = prime * result + ((paidAmount == null) ? 0 : paidAmount.hashCode());
+        result = prime * result + ((change == null) ? 0 : change.hashCode());
+        result = prime * result + ((saleDate == null) ? 0 : saleDate.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Sale other = (Sale) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (items == null) {
+            if (other.items != null)
+                return false;
+        } else if (!items.equals(other.items))
+            return false;
+        if (paymentMethod == null) {
+            if (other.paymentMethod != null)
+                return false;
+        } else if (!paymentMethod.equals(other.paymentMethod))
+            return false;
+        if (paidAmount == null) {
+            if (other.paidAmount != null)
+                return false;
+        } else if (!paidAmount.equals(other.paidAmount))
+            return false;
+        if (change == null) {
+            if (other.change != null)
+                return false;
+        } else if (!change.equals(other.change))
+            return false;
+        if (saleDate == null) {
+            if (other.saleDate != null)
+                return false;
+        } else if (!saleDate.equals(other.saleDate))
+            return false;
+        return true;
     }
 
     @Override
