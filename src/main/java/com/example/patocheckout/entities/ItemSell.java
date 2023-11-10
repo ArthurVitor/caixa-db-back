@@ -13,11 +13,12 @@ import jakarta.persistence.Table;
 @Entity
 public class ItemSell {
 
-    protected ItemSell() { }
+    public ItemSell() { }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    protected long id;
 
     @ManyToOne
     @JoinColumn(name = "sale_id")
@@ -65,6 +66,15 @@ public class ItemSell {
         this.discount_amount = discount_amount;
     }
 
-
+    @Override
+    public String toString() {
+        return "ItemSell{" +
+                "id=" + id +
+                ", sell=" + sell +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", discount_amount=" + discount_amount +
+                '}';
+    }
 }
 
