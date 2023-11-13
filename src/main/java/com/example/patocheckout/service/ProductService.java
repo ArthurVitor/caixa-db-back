@@ -11,6 +11,8 @@ public interface ProductService {
 
     Optional<Product> findProductById(long id) throws DataAccessException;
 
+    List<Product> findProductByBarCode(String barcode) throws DataAccessException;
+
     List<Product> findAllProducts() throws DataAccessException;
 
     void saveProduct(Product product) throws DataAccessException;
