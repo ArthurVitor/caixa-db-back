@@ -1,10 +1,19 @@
 package com.example.patocheckout.entities;
+
 import java.time.LocalDate;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,10 +30,14 @@ public class Cashier {
     @Column(nullable = false)
     private LocalDate openDate = LocalDate.now();
 
+    @Column(nullable = true)
     private LocalDate closeDate;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    private List<Sale> sales; 
 
     public Cashier(boolean isOpen, LocalDate openDate) {
+        this.sales = new ArrayList<>();
         this.isOpen = isOpen;
         this.openDate = openDate;
     }
@@ -68,6 +81,14 @@ public class Cashier {
         this.openDate = LocalDate.now(); 
     }
 
+    public List<Sale> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
+    }
+
     public void closeCashier(){
         this.isOpen = false; 
         this.closeDate = LocalDate.now(); 
@@ -75,7 +96,8 @@ public class Cashier {
 
     @Override
     public String toString() {
-        return "Cashier [id=" + id + ", isOpen=" + isOpen + ", openDate=" + openDate + ", closeDate=" + closeDate + "]";
+        return "Cashier [id=" + id + ", isOpen=" + isOpen + ", openDate=" + openDate + ", closeDate=" + closeDate
+                + ", sales=" + sales + "]";
     }
 
     @Override
@@ -86,6 +108,7 @@ public class Cashier {
         result = prime * result + (isOpen ? 1231 : 1237);
         result = prime * result + ((openDate == null) ? 0 : openDate.hashCode());
         result = prime * result + ((closeDate == null) ? 0 : closeDate.hashCode());
+        result = prime * result + ((sales == null) ? 0 : sales.hashCode());
         return result;
     }
 
@@ -114,6 +137,11 @@ public class Cashier {
             if (other.closeDate != null)
                 return false;
         } else if (!closeDate.equals(other.closeDate))
+            return false;
+        if (sales == null) {
+            if (other.sales != null)
+                return false;
+        } else if (!sales.equals(other.sales))
             return false;
         return true;
     }
