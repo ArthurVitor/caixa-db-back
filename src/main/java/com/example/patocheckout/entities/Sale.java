@@ -49,10 +49,7 @@ public class Sale {
 
     private LocalDate saleDate;
 
-    protected Sale() {
-    }
-
-    public Sale(Cashier cashier) {
+    public Sale() {
         this.items = new ArrayList<>();
         this.saleDate = LocalDate.now();
         this.paidAmount = BigDecimal.ZERO;
@@ -91,7 +88,7 @@ public class Sale {
 
     public void pay(BigDecimal paidAmount) {
         this.paidAmount = paidAmount;
-        this.change = paidAmount.subtract(BigDecimal.valueOf(getSubtotal()));
+        this.change = paidAmount.subtract(getSubtotal());
     }
 
     public List<ItemSell> getItems() {
