@@ -28,14 +28,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<Product> findProductByBarcode(String barcode) throws DataAccessException {
+        return productRepository.findByBarcode(barcode);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<Product> findAllProducts() throws DataAccessException {
         return productRepository.findAll();
     }
 
     @Override
     @Transactional
-    public void saveProduct(Product product) throws DataAccessException {
+    public Product saveProduct(Product product) throws DataAccessException {
         productRepository.save(product);
+        return product;
     }
 
     @Override

@@ -11,9 +11,11 @@ public interface ProductService {
 
     Optional<Product> findProductById(long id) throws DataAccessException;
 
+    List<Product> findProductByBarcode(String barcode) throws DataAccessException;
+
     List<Product> findAllProducts() throws DataAccessException;
 
-    void saveProduct(Product product) throws DataAccessException;
+    Product saveProduct(Product product) throws DataAccessException;
 
     void deleteProduct(Product product) throws DataAccessException;
 }
