@@ -16,7 +16,11 @@ import java.util.List;
 @Service
 public class CashierServiceImpl implements CashierService{
 
-    private CashierRepository cashierRepository;
+    private final CashierRepository cashierRepository;
+
+    public CashierServiceImpl(CashierRepository cashierRepository) {
+        this.cashierRepository = cashierRepository;
+    }
 
     @Override
     @Transactional(readOnly = true)
