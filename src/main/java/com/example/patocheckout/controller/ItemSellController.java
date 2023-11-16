@@ -31,7 +31,6 @@ public class ItemSellController {
     @GetMapping("/all")
     public ResponseEntity<Collection<ItemSell>> getAllItemSells() {
         Collection<ItemSell> itemSells = itemSellService.getAllItemSells();
-        System.out.println("wjjjjjjjjjjjjjjjjjjjjjj");
 
         return new ResponseEntity<>(itemSells, HttpStatus.OK);
     }
