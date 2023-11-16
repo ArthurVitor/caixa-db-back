@@ -41,6 +41,9 @@ public class Cashier {
         this.openDate = openDate;
     }
 
+    public Cashier() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
