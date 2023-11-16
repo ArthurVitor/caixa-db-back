@@ -39,8 +39,19 @@ public class CashierControllerTest {
     public void testGetCashierById() throws Exception {
         Long cashier_id = 0L;
 
-        this.mockMvc.perform(get("/api/cashier/" + cashier_id)
+        this.mockMvc.perform(get("/api/cashiers/" + cashier_id)
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isNotFound());
     }
+
+    @Test
+    public void  testGetAllCashiers() throws Exception {
+        this.mockMvc.perform(get("/api/cashiers/all")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk()); 
+    }
+
+
+    
+
 }
