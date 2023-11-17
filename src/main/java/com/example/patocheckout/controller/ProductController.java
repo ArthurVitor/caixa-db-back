@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.patocheckout.entities.Product;
-import com.example.patocheckout.service.impl.ProductServiceImpl;
+import com.example.patocheckout.service.ProductService;
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 
     @Autowired
-    private final ProductServiceImpl productService;
+    private final ProductService productService;
 
-    public ProductController(ProductServiceImpl productServiceImpl) {
-        this.productService = productServiceImpl;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
@@ -56,13 +56,13 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity<Product> Post(@RequestBody Product product) {
+    public @ResponseBody ResponseEntity<Product> createProduct(@RequestBody Product product) {
         productService.saveProduct(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity<String> Put(@RequestBody Product product, @PathVariable Long id) {
+    public @ResponseBody ResponseEntity<String> editProduct(@RequestBody Product product, @PathVariable Long id) {
         Optional<Product> currentProduct = productService.findProductById(id);
 
         if (currentProduct.isPresent() == false) return new ResponseEntity<>("Product not found!", HttpStatus.NOT_FOUND);
@@ -79,7 +79,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody ResponseEntity<String> Delete(@PathVariable Long id) {
+    public @ResponseBody ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         Optional<Product> currentProduct = productService.findProductById(id);
 
         if (currentProduct.isPresent() == false) return new ResponseEntity<>("Product not found!", HttpStatus.NOT_FOUND);
