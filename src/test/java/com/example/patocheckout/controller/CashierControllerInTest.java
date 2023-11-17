@@ -59,7 +59,7 @@ public class CashierControllerInTest {
         Long cashierId = 1L;
         Sale sale = new Sale();
 
-        this.mockMvc.perform(post("/api/cashiers//addSale/{id}", cashierId)
+        this.mockMvc.perform(post("/api/cashiers/addSale/{id}", cashierId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(sale)))
                 .andExpect(status().isOk());
