@@ -1,6 +1,8 @@
 package com.example.patocheckout.controller;
 
+import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List; 
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +62,7 @@ public class CashierController {
         return new ResponseEntity<>(HttpStatus.CREATED);  
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Cashier> deleteCashier(@PathVariable Long id) {
         Cashier cashier = cashierService.findById(id);
         if(cashier == null){
@@ -85,7 +87,7 @@ public class CashierController {
         return new ResponseEntity<>(cashier, HttpStatus.OK);
     }
 
-    @PostMapping("{id}/close")
+    @PostMapping("close/{id}")
     public ResponseEntity<Cashier> closeCashier(@PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
          if(cashier == null ){
@@ -95,6 +97,17 @@ public class CashierController {
         cashierService.save(cashier);
         return new ResponseEntity<>(cashier, HttpStatus.OK); 
         
+    }
+
+    @PostMapping("totalSales/{id}") 
+    public ResponseEntity<BigDecimal> getTotalSalesCashier(@PathVariable Long id) {
+        Cashier cashier = cashierService.findById(id);
+        if (cashier == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        BigDecimal total = cashierService.getTotal(cashier);
+        return new ResponseEntity<>(total, HttpStatus.OK); 
     }
 
 }

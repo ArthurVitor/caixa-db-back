@@ -69,7 +69,7 @@ public class CashierControllerInTest {
     public void testCloseCashier() throws Exception {
         Long cashierId = 1L;
 
-        this.mockMvc.perform(post("/api/cashiers/{id}/close", cashierId)
+        this.mockMvc.perform(post("/api/cashiers/close/{id}", cashierId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.open").value(false));
