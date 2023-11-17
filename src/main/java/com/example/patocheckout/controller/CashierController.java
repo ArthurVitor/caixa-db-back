@@ -26,13 +26,13 @@ public class CashierController {
             this.cashierService = cashierService; 
     }
 
-    @GetMapping("/all")
+    @GetMapping("all")
     public ResponseEntity<Collection<Cashier>> getAllCashiers() {
         Collection<Cashier> cashiers = cashierService.findAll(); 
         return new ResponseEntity<>(cashiers, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Cashier> getCashierById(@PathVariable Long id) {
         Cashier cashier = cashierService.findById(id); 
         if (cashier == null){
@@ -70,7 +70,7 @@ public class CashierController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
     }
 
-    @PostMapping("/addSale/{id}")
+    @PostMapping("addSale/{id}")
     public ResponseEntity<Cashier> addSale(@RequestBody Sale sale, @PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
         if(cashier == null ){
@@ -85,7 +85,7 @@ public class CashierController {
         return new ResponseEntity<>(cashier, HttpStatus.OK);
     }
 
-    @PostMapping("/{id}/close")
+    @PostMapping("{id}/close")
     public ResponseEntity<Cashier> closeCashier(@PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
          if(cashier == null ){
