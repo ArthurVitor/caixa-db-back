@@ -32,5 +32,14 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
     public Collection<PaymentMethod> findAllPaymentMethods() throws DataAccessException {
         return paymentMethodRepository.findAll();
     }
-    
+
+    @Override
+    public void savePaymentMethod(PaymentMethod paymentMethod) {
+        paymentMethodRepository.save(paymentMethod);
+    }
+
+    @Override
+    public Boolean isDataInitialized() {
+        return paymentMethodRepository.count() > 0;
+    }
 }
