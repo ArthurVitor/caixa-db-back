@@ -1,7 +1,11 @@
 package com.example.patocheckout.controller;
 
 import com.example.patocheckout.entities.Cashier;
+import com.example.patocheckout.entities.Sale;
 import com.example.patocheckout.service.CashierService;
+
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +31,9 @@ public class CashierControllerInTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @MockBean
     private CashierService cashierService;
 
@@ -47,6 +54,25 @@ public class CashierControllerInTest {
                 .andExpect(jsonPath("$.open").value(true)); 
     }
 
-    
+   @Test
+    public void testAddSale() throws Exception {
+        Long cashierId = 1L;
+        Sale sale = new Sale();
+
+        this.mockMvc.perform(post("/api/cashiers//addSale/{id}", cashierId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(sale)))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testCloseCashier() throws Exception {
+        Long cashierId = 1L;
+
+        this.mockMvc.perform(post("/api/cashiers/{id}/close", cashierId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.open").value(false));
+    }
 
 }
