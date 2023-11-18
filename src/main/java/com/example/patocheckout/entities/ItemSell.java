@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Table(name = "item_sells")
+@Table(name = "item_sell")
 @Entity
 public class ItemSell {
 
