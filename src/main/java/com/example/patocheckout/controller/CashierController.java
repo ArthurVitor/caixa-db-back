@@ -1,8 +1,7 @@
 package com.example.patocheckout.controller;
 
 import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.List; 
+import java.util.Collection; 
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
