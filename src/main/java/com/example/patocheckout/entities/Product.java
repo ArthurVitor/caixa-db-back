@@ -1,6 +1,6 @@
 package com.example.patocheckout.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class Product {
     private String barcode;
 
     @Column(nullable = true)
-    private LocalDate discontinuation_date;
+    private LocalDateTime discontinuation_date;
 
     protected Product() {}
 
@@ -66,11 +66,11 @@ public class Product {
         this.barcode = barcode;
     }
 
-    public LocalDate getDiscontinuation_date() {
+    public LocalDateTime getDiscontinuation_date() {
         return discontinuation_date;
     }
 
-    public void setDiscontinuation_date(LocalDate discontinuation_date) {
+    public void setDiscontinuation_date(LocalDateTime discontinuation_date) {
         this.discontinuation_date = discontinuation_date;
     }
 

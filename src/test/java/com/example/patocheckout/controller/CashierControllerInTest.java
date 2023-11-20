@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import java.util.Collections;
@@ -39,7 +39,7 @@ public class CashierControllerInTest {
 
     @BeforeEach
     public void setUp() {
-        Cashier cashier = new Cashier(true, LocalDate.now());
+        Cashier cashier = new Cashier(true, LocalDateTime.now());
         when(cashierService.findById(1L)).thenReturn(cashier);
         when(cashierService.findAll()).thenReturn(Arrays.asList(cashier));
         when(cashierService.findByIsOpen(true)).thenReturn(Collections.singletonList(cashier));
@@ -69,7 +69,7 @@ public class CashierControllerInTest {
     public void testCloseCashier() throws Exception {
         Long cashierId = 1L;
 
-        this.mockMvc.perform(post("/api/cashiers/{id}/close", cashierId)
+        this.mockMvc.perform(post("/api/cashiers/close/{id}", cashierId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.open").value(false));
