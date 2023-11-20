@@ -2,6 +2,10 @@ package com.example.patocheckout.entities;
 
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +30,8 @@ public class Product {
     @Column(nullable = false)
     private String barcode;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(nullable = true)
     private LocalDateTime discontinuation_date;
 
