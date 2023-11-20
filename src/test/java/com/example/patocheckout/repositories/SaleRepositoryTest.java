@@ -10,7 +10,7 @@ import com.example.patocheckout.entities.Sale;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,7 +27,7 @@ public class SaleRepositoryTest {
 
     @Test
     public void testFindByIsOpen() {
-        Cashier cashier = new Cashier(true, LocalDate.now());
+        Cashier cashier = new Cashier(true, LocalDateTime.now());
 
         cashierRepository.save(cashier);
 

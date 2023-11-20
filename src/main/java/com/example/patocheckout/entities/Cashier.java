@@ -1,6 +1,6 @@
 package com.example.patocheckout.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -27,15 +27,15 @@ public class Cashier {
     private boolean isOpen = true;
 
     @Column(nullable = false)
-    private LocalDate openDate = LocalDate.now();
+    private LocalDateTime openDate = LocalDateTime.now();
 
     @Column(nullable = true)
-    private LocalDate closeDate;
+    private LocalDateTime closeDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     private List<Sale> sales; 
 
-    public Cashier(boolean isOpen, LocalDate openDate) {
+    public Cashier(boolean isOpen, LocalDateTime openDate) {
         this.sales = new ArrayList<>();
         this.isOpen = isOpen;
         this.openDate = openDate;
@@ -52,13 +52,13 @@ public class Cashier {
         this.isOpen = isOpen;
     }
 
-    public void setOpenDate(LocalDate openDate) {
+    public void setOpenDate(LocalDateTime openDate) {
         if (openDate != null) {
             this.openDate = openDate;
         }
     }
 
-    public void setCloseDate(LocalDate closeDate) {
+    public void setCloseDate(LocalDateTime closeDate) {
         this.closeDate = closeDate;
     }  
 
@@ -70,17 +70,17 @@ public class Cashier {
         return isOpen;
     }
 
-    public LocalDate getOpenDate() {
+    public LocalDateTime getOpenDate() {
         return openDate;
     }
 
-    public LocalDate getCloseDate() {
+    public LocalDateTime getCloseDate() {
         return closeDate;
     }
 
     public void openCashier(){
         this.isOpen = true; 
-        this.openDate = LocalDate.now(); 
+        this.openDate = LocalDateTime.now(); 
     }
 
     public List<Sale> getSales() {
@@ -93,7 +93,7 @@ public class Cashier {
 
     public void closeCashier(){
         this.isOpen = false; 
-        this.closeDate = LocalDate.now(); 
+        this.closeDate = LocalDateTime.now(); 
     }
 
     @Override

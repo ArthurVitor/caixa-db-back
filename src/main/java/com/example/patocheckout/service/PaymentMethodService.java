@@ -6,8 +6,6 @@ import org.springframework.dao.DataAccessException;
 
 import com.example.patocheckout.entities.PaymentMethod;
 
-import javax.xml.crypto.Data;
-
 public interface PaymentMethodService {
 
     PaymentMethod findPaymentMethodById(long id) throws DataAccessException;

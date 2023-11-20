@@ -1,7 +1,7 @@
 package com.example.patocheckout.entities;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +47,11 @@ public class Sale {
     @Column(nullable = false)
     private BigDecimal change;
 
-    private LocalDate saleDate;
+    private LocalDateTime saleDate;
 
     public Sale() {
         this.items = new ArrayList<>();
-        this.saleDate = LocalDate.now();
+        this.saleDate = LocalDateTime.now();
         this.paidAmount = BigDecimal.ZERO;
         this.change = BigDecimal.ZERO;
     }
