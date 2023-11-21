@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +34,7 @@ public class Sale {
      * Relacionamento 1 para muitos com a entidade ItemSell
      */
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "sale_id")
     private List<ItemSell> items;
 
@@ -47,6 +52,8 @@ public class Sale {
     @Column(nullable = false)
     private BigDecimal change;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime saleDate;
 
     public Sale() {
@@ -105,7 +112,7 @@ public class Sale {
 
     public BigDecimal getSubtotal() {
         return BigDecimal.valueOf(this.items.stream()
-                .mapToDouble(item -> (item.getProduct_id().getPrice() - item.getDiscount_amount()) * item.getQuantity())
+                .mapToDouble(item -> (item.getProduct().getPrice() - item.getDiscount_amount()) * item.getQuantity())
                 .sum());
     }
 

@@ -3,6 +3,11 @@ package com.example.patocheckout.entities;
 import java.time.LocalDateTime;
 
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
@@ -26,13 +31,17 @@ public class Cashier {
     @Column(nullable = false)
     private boolean isOpen = true;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(nullable = false)
     private LocalDateTime openDate = LocalDateTime.now();
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(nullable = true)
     private LocalDateTime closeDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Sale> sales; 
 
     public Cashier(boolean isOpen, LocalDateTime openDate) {
