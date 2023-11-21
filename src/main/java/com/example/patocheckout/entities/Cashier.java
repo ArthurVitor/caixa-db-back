@@ -41,7 +41,7 @@ public class Cashier {
     @Column(nullable = true)
     private LocalDateTime closeDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Sale> sales; 
 
     public Cashier(boolean isOpen, LocalDateTime openDate) {

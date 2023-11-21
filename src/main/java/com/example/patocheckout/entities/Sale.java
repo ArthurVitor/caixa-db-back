@@ -34,7 +34,7 @@ public class Sale {
      * Relacionamento 1 para muitos com a entidade ItemSell
      */
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "sale_id")
     private List<ItemSell> items;
 
@@ -112,7 +112,7 @@ public class Sale {
 
     public BigDecimal getSubtotal() {
         return BigDecimal.valueOf(this.items.stream()
-                .mapToDouble(item -> (item.getProduct_id().getPrice() - item.getDiscount_amount()) * item.getQuantity())
+                .mapToDouble(item -> (item.getProduct().getPrice() - item.getDiscount_amount()) * item.getQuantity())
                 .sum());
     }
 
