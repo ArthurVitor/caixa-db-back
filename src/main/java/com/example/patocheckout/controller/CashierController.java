@@ -73,7 +73,7 @@ public class CashierController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
     }
 
-    @GetMapping("addSale/{id}")
+    @PostMapping("addSale/{id}")
     public ResponseEntity<Cashier> addSale(@RequestBody Sale sale, @PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
         if(cashier == null ){
@@ -88,7 +88,7 @@ public class CashierController {
         return new ResponseEntity<>(cashier, HttpStatus.OK);
     }
 
-    @GetMapping("close/{id}")
+    @PostMapping("close/{id}")
     public ResponseEntity<Cashier> closeCashier(@PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
          if(cashier == null ){
