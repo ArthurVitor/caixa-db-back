@@ -25,7 +25,7 @@ public class Product {
     private String name;
 
     @Column(nullable = false)
-    private Float price;
+    private Double price;
 
     @Column(nullable = false)
     private String barcode;
@@ -37,7 +37,7 @@ public class Product {
 
     protected Product() {}
 
-    public Product(String name, Float price, String barcode) {
+    public Product(String name, Double price, String barcode) {
         this.name = name;
         this.price = price;
         this.barcode = barcode;
@@ -56,11 +56,11 @@ public class Product {
         this.name = name;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
