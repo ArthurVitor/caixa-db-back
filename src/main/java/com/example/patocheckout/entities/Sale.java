@@ -29,7 +29,7 @@ public class Sale {
      * Relacionamento 1 para muitos com a entidade ItemSell
      */
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "sale_id")
     private List<ItemSell> items;
 

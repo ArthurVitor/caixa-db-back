@@ -21,10 +21,6 @@ public class ItemSell {
     protected long id;
 
     @ManyToOne
-    @JoinColumn(name = "sale_id")
-    private Sale sell;
-
-    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -33,14 +29,6 @@ public class ItemSell {
 
     @Column(nullable = true)
     private float discount_amount;
-
-    public Sale getSell_id() {
-        return sell;
-    }
-
-    public void setSell(Sale sell) {
-        this.sell = sell;
-    }
 
     public Product getProduct_id() {
         return product;
@@ -70,7 +58,6 @@ public class ItemSell {
     public String toString() {
         return "ItemSell{" +
                 "id=" + id +
-                ", sell=" + sell +
                 ", product=" + product +
                 ", quantity=" + quantity +
                 ", discount_amount=" + discount_amount +
