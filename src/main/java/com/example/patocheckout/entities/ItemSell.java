@@ -30,7 +30,7 @@ public class ItemSell {
     @Column(nullable = true)
     private float discount_amount;
 
-    public Product getProduct_id() {
+    public Product getProduct() {
         return product;
     }
 

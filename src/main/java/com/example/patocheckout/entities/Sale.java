@@ -105,7 +105,7 @@ public class Sale {
 
     public BigDecimal getSubtotal() {
         return BigDecimal.valueOf(this.items.stream()
-                .mapToDouble(item -> (item.getProduct_id().getPrice() - item.getDiscount_amount()) * item.getQuantity())
+                .mapToDouble(item -> (item.getProduct().getPrice() - item.getDiscount_amount()) * item.getQuantity())
                 .sum());
     }
 
