@@ -7,7 +7,5 @@ import com.example.patocheckout.entities.PaymentMethod;
 
 @Repository
 public interface PaymentMethodRepository extends JpaRepository<PaymentMethod, Long> {
-
     PaymentMethod findByName(String name);
-
 }
