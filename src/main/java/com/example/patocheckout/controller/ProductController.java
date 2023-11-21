@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.example.patocheckout.entities.Product;
 import com.example.patocheckout.service.ProductService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api")
 public class ProductController {
 
@@ -30,6 +32,7 @@ public class ProductController {
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Product>> getProducts() {
+
         List<Product> products = productService.findAllProducts();
 
         return new ResponseEntity<>(products, HttpStatus.OK);
