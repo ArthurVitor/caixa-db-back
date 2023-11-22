@@ -85,6 +85,10 @@ public class Sale {
         this.paymentMethod = paymentMethod;
     }
 
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
     public BigDecimal getPaidAmount() {
         return paidAmount;
     }
