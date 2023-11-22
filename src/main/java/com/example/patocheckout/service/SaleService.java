@@ -20,6 +20,8 @@ public interface SaleService {
 
     Sale createSale(Sale sale);
 
+    void deleteSaleById(long id);
+
     void deleteSale(Sale sale);
     
 }

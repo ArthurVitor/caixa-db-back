@@ -30,28 +30,20 @@ public class ItemSell {
     @Column(nullable = true)
     private float discount_amount;
 
-    public Product getProduct() {
-        return product;
+    public long getId() {
+        return id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public Product getProduct() {
+        return product;
     }
 
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public float getDiscount_amount() {
+    public float getDiscountAmount() {
         return discount_amount;
-    }
-
-    public void setDiscount_amount(float discount_amount) {
-        this.discount_amount = discount_amount;
     }
 
     @Override

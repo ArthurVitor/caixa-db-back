@@ -19,8 +19,8 @@ import com.example.patocheckout.entities.Sale;
 import com.example.patocheckout.service.CashierService;
 
 @RestController
-@RequestMapping("/api/cashiers")
 @CrossOrigin("http://localhost:5173")
+@RequestMapping("/api/cashiers")
 public class CashierController {
     
     private final CashierService cashierService;

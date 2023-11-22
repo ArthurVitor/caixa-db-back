@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
+@CrossOrigin("http://localhost:5173/")
 @RequestMapping("/api/itemsell")
 public class ItemSellController {
     private final ItemSellService itemSellService;

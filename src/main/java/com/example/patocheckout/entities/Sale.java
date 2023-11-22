@@ -85,17 +85,16 @@ public class Sale {
         this.paymentMethod = paymentMethod;
     }
 
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
     public BigDecimal getPaidAmount() {
         return paidAmount;
     }
 
     public BigDecimal getChange() {
         return change;
-    }
-
-    public void pay(BigDecimal paidAmount) {
-        this.paidAmount = paidAmount;
-        this.change = paidAmount.subtract(getSubtotal());
     }
 
     public List<ItemSell> getItems() {
@@ -110,9 +109,9 @@ public class Sale {
      * @return Subtotal da venda
      */
 
-    public BigDecimal getSubtotal() {
+    public BigDecimal getSubTotal() {
         return BigDecimal.valueOf(this.items.stream()
-                .mapToDouble(item -> (item.getProduct().getPrice() - item.getDiscount_amount()) * item.getQuantity())
+                .mapToDouble(item -> (item.getProduct().getPrice() - item.getDiscountAmount()) * item.getQuantity())
                 .sum());
     }
 
