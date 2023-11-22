@@ -33,7 +33,7 @@ public class Product {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(nullable = true)
-    private LocalDateTime discontinuation_date;
+    private LocalDateTime discontinuationDate;
 
     protected Product() {}
 
@@ -41,7 +41,19 @@ public class Product {
         this.name = name;
         this.price = price;
         this.barcode = barcode;
-        this.discontinuation_date = null;
+        this.discontinuationDate = null;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public Long getId() {
@@ -52,32 +64,20 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public String getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public LocalDateTime getDiscontinuationDate() {
+        return discontinuationDate;
     }
 
-    public LocalDateTime getDiscontinuation_date() {
-        return discontinuation_date;
-    }
-
-    public void setDiscontinuation_date(LocalDateTime discontinuation_date) {
-        this.discontinuation_date = discontinuation_date;
+    public void setdiscontinuationDate(LocalDateTime discontinuationDate) {
+        this.discontinuationDate = discontinuationDate;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Product {
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
         result = prime * result + ((barcode == null) ? 0 : barcode.hashCode());
-        result = prime * result + ((discontinuation_date == null) ? 0 : discontinuation_date.hashCode());
+        result = prime * result + ((discontinuationDate == null) ? 0 : discontinuationDate.hashCode());
         return result;
     }
 
@@ -121,10 +121,10 @@ public class Product {
                 return false;
         } else if (!barcode.equals(other.barcode))
             return false;
-        if (discontinuation_date == null) {
-            if (other.discontinuation_date != null)
+        if (discontinuationDate == null) {
+            if (other.discontinuationDate != null)
                 return false;
-        } else if (!discontinuation_date.equals(other.discontinuation_date))
+        } else if (!discontinuationDate.equals(other.discontinuationDate))
             return false;
         return true;
     }
@@ -132,7 +132,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", price=" + price + ", barcode=" + barcode
-                + ", discontinuation_date=" + discontinuation_date + "]";
+                + ", discontinuation_date=" + discontinuationDate + "]";
     }
 
 }

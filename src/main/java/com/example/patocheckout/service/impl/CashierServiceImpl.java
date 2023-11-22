@@ -2,6 +2,7 @@ package com.example.patocheckout.service.impl;
 import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,7 @@ public class CashierServiceImpl implements CashierService{
 
     @Override
     public Collection<Cashier> findAll() throws DataAccessException {
-        return cashierRepository.findAll();
+        return cashierRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @Override
@@ -55,13 +56,13 @@ public class CashierServiceImpl implements CashierService{
 
     @Override
     public BigDecimal getTotal(Cashier cashier) throws DataAccessException {
-     
         List<Sale> sales = cashier.getSales(); 
         BigDecimal totalSales = BigDecimal.ZERO;  
 
         for (Sale sale : sales){
-            totalSales = totalSales.add(sale.getSubtotal()); 
+            totalSales = totalSales.add(sale.getSubTotal()); 
         }
+
         return totalSales; 
     }
 
