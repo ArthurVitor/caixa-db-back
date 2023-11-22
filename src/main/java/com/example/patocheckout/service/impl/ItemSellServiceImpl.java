@@ -4,7 +4,6 @@ import com.example.patocheckout.entities.ItemSell;
 import com.example.patocheckout.entities.Product;
 import com.example.patocheckout.repositories.ItemSellRepository;
 import com.example.patocheckout.service.ItemSellService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -15,7 +14,6 @@ public class ItemSellServiceImpl implements ItemSellService {
 
     private final ItemSellRepository itemSellRepository;
 
-    @Autowired
     public ItemSellServiceImpl(ItemSellRepository itemSellRepository) {
         this.itemSellRepository = itemSellRepository;
     }

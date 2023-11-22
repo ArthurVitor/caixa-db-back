@@ -60,7 +60,7 @@ public class CashierServiceImpl implements CashierService{
         BigDecimal totalSales = BigDecimal.ZERO;  
 
         for (Sale sale : sales){
-            totalSales = totalSales.add(sale.getSubtotal()); 
+            totalSales = totalSales.add(sale.getSubTotal()); 
         }
         return totalSales; 
     }
