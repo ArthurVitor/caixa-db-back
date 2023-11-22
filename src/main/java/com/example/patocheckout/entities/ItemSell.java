@@ -30,6 +30,10 @@ public class ItemSell {
     @Column(nullable = true)
     private float discount_amount;
 
+    public long getId() {
+        return id;
+    }
+
     public Product getProduct() {
         return product;
     }
