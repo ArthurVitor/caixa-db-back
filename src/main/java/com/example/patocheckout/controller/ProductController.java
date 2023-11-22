@@ -19,7 +19,7 @@ import com.example.patocheckout.entities.Product;
 import com.example.patocheckout.service.ProductService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin("http://localhost:5173/")
 @RequestMapping("/api")
 public class ProductController {
 
@@ -65,17 +65,16 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.PUT)
-    public @ResponseBody ResponseEntity<String> editProduct(@RequestBody Product product, @PathVariable Long id) {
-        Optional<Product> currentProduct = productService.findProductById(id);
+    public @ResponseBody ResponseEntity<String> Put(@RequestBody Product product, @PathVariable Long id) {
+        Product currentProduct = productService.findProductById(id).orElse(null);
 
-        if (currentProduct.isPresent() == false) return new ResponseEntity<>("Product not found!", HttpStatus.NOT_FOUND);
+        if (currentProduct == null) return new ResponseEntity<>("Product not found!", HttpStatus.NOT_FOUND);
 
-        currentProduct.get().setName(product.getName());
-        currentProduct.get().setPrice(product.getPrice());
-        currentProduct.get().setBarcode(product.getBarcode());
+        currentProduct.setName(product.getName());
+        currentProduct.setPrice(product.getPrice());
+        currentProduct.setBarcode(product.getBarcode());
 
-        Product productToSave = currentProduct.get();
-        productService.saveProduct(productToSave);
+        productService.saveProduct(currentProduct);
 
         return new ResponseEntity<>("Product edited!", HttpStatus.CREATED);
 

@@ -22,21 +22,10 @@ public class CommandLineRunnerFile implements CommandLineRunner {
     @Override
     public void run(String... args) {
         if (!paymentMethodService.isDataInitialized()) {
-            PaymentMethod credito = new PaymentMethod();
-            credito.setName("Crédito");
-            paymentMethodService.savePaymentMethod(credito);
-
-            PaymentMethod debito = new PaymentMethod();
-            debito.setName("Débito");
-            paymentMethodService.savePaymentMethod(debito);
-
-            PaymentMethod dinheiro = new PaymentMethod();
-            dinheiro.setName("Dinheiro");
-            paymentMethodService.savePaymentMethod(dinheiro);
-
-            PaymentMethod pix = new PaymentMethod();
-            pix.setName("Pix");
-            paymentMethodService.savePaymentMethod(pix);
+            paymentMethodService.savePaymentMethod(new PaymentMethod("Crédito"));
+            paymentMethodService.savePaymentMethod(new PaymentMethod("Débito"));
+            paymentMethodService.savePaymentMethod(new PaymentMethod("Dinheiro"));
+            paymentMethodService.savePaymentMethod(new PaymentMethod("Pix"));
         }
     }
 }

@@ -34,24 +34,12 @@ public class ItemSell {
         return product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public float getDiscount_amount() {
+    public float getDiscountAmount() {
         return discount_amount;
-    }
-
-    public void setDiscount_amount(float discount_amount) {
-        this.discount_amount = discount_amount;
     }
 
     @Override
