@@ -57,7 +57,7 @@ public class CashierController {
         return new ResponseEntity<>(cashiers, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("save")
     public ResponseEntity<Cashier> saveCashier(@RequestBody Cashier cashier) {
         if(cashier == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
@@ -91,21 +91,7 @@ public class CashierController {
         return new ResponseEntity<>(cashier, HttpStatus.OK);
     }
 
-    @DeleteMapping("removeSale/{id}")
-    public ResponseEntity<Cashier> removeSale(@PathVariable Long id){
-        Cashier cashier = cashierService.findSaleById(id);
-
-        if(cashier == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-        }
-
-        cashier.getSales().removeIf(s -> s.getId().equals(id));
-        cashierService.save(cashier);
-        saleService.deleteSaleById(id);
-        return new ResponseEntity<>(cashier, HttpStatus.OK);
-    }
-
-    @PostMapping("close/{id}")
+    @GetMapping("close/{id}")
     public ResponseEntity<Cashier> closeCashier(@PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
          if(cashier == null ){
