@@ -54,7 +54,7 @@ public class CashierController {
         return new ResponseEntity<>(cashiers, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("save")
     public ResponseEntity<Cashier> saveCashier(@RequestBody Cashier cashier) {
         if(cashier == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
