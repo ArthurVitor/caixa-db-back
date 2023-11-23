@@ -61,9 +61,8 @@ public class CashierController {
     public ResponseEntity<Cashier> saveCashier(@RequestBody Cashier cashier) {
         if(cashier == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-        }
-        cashierService.save(cashier);
-        return new ResponseEntity<>(HttpStatus.CREATED);  
+        } 
+        return new ResponseEntity<>(cashierService.save(cashier), HttpStatus.CREATED);  
     }
 
     @DeleteMapping("{id}")

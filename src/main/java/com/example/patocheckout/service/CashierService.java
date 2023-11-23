@@ -1,12 +1,9 @@
 package com.example.patocheckout.service;
-
-import java.math.BigDecimal;
 import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
 
 import com.example.patocheckout.entities.Cashier;
-import com.example.patocheckout.entities.Sale;
 
 
 public interface CashierService {
@@ -19,7 +16,7 @@ public interface CashierService {
 
     Cashier findSaleById(long id) throws DataAccessException;
 
-    void save(Cashier cashier) throws DataAccessException;
+    Cashier save(Cashier cashier) throws DataAccessException;
 
     void delete(Cashier cashier) throws DataAccessException;
 
