@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.patocheckout.entities.Cashier;
 import com.example.patocheckout.entities.Sale;
 import com.example.patocheckout.service.CashierService;
+import com.example.patocheckout.service.SaleService;
 
 @RestController
 @CrossOrigin("http://localhost:5173")
@@ -24,9 +25,11 @@ import com.example.patocheckout.service.CashierService;
 public class CashierController {
     
     private final CashierService cashierService;
+    private final SaleService saleService;
 
-    public CashierController(CashierService cashierService) {
-            this.cashierService = cashierService; 
+    public CashierController(CashierService cashierService, SaleService saleService) {
+        this.cashierService = cashierService; 
+        this.saleService = saleService;
     }
 
     @GetMapping("all")
@@ -88,6 +91,20 @@ public class CashierController {
         return new ResponseEntity<>(cashier, HttpStatus.OK);
     }
 
+    @DeleteMapping("removeSale/{id}")
+    public ResponseEntity<Cashier> removeSale(@PathVariable Long id){
+        Cashier cashier = cashierService.findSaleById(id);
+
+        if(cashier == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+
+        cashier.getSales().removeIf(s -> s.getId().equals(id));
+        cashierService.save(cashier);
+        saleService.deleteSaleById(id);
+        return new ResponseEntity<>(cashier, HttpStatus.OK);
+    }
+
     @PostMapping("close/{id}")
     public ResponseEntity<Cashier> closeCashier(@PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
@@ -97,18 +114,6 @@ public class CashierController {
         cashier.setOpen(false); 
         cashierService.save(cashier);
         return new ResponseEntity<>(cashier, HttpStatus.OK); 
-        
-    }
-
-    @GetMapping("totalSales/{id}") 
-    public ResponseEntity<BigDecimal> getTotalSalesCashier(@PathVariable Long id) {
-        Cashier cashier = cashierService.findById(id);
-        if (cashier == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        BigDecimal total = cashierService.getTotal(cashier);
-        return new ResponseEntity<>(total, HttpStatus.OK); 
     }
 
 }

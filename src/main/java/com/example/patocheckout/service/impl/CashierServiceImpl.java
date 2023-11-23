@@ -7,12 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.patocheckout.entities.Cashier;
-import com.example.patocheckout.entities.Sale;
 import com.example.patocheckout.repositories.CashierRepository;
 import com.example.patocheckout.service.CashierService;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 public class CashierServiceImpl implements CashierService{
@@ -50,20 +46,8 @@ public class CashierServiceImpl implements CashierService{
     }
 
     @Override
-    public Collection<Sale> findAllSales(Cashier cashier) throws DataAccessException {
-        return cashier.getSales(); 
+    public Cashier findSaleById(long id) throws DataAccessException {
+        return cashierRepository.findBySalesId(id);
     }
-
-    @Override
-    public BigDecimal getTotal(Cashier cashier) throws DataAccessException {
-        List<Sale> sales = cashier.getSales(); 
-        BigDecimal totalSales = BigDecimal.ZERO;  
-
-        for (Sale sale : sales){
-            totalSales = totalSales.add(sale.getSubTotal()); 
-        }
-
-        return totalSales; 
-    }
-
+    
 }
