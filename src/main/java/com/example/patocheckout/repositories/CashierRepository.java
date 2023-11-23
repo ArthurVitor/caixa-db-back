@@ -9,4 +9,6 @@ import com.example.patocheckout.entities.Cashier;
 @Repository
 public interface CashierRepository extends JpaRepository<Cashier, Long>{
     List<Cashier> findByIsOpen(boolean isOpen) throws DataAccessException;
+
+    Cashier findBySalesId(long saleId) throws DataAccessException;
 }
