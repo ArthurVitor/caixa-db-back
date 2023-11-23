@@ -44,6 +44,11 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
+    public void deleteSaleById(long id) {
+        this.saleRepository.deleteById(id);
+    }
+
+    @Override
     @Transactional
     public void deleteSale(Sale sale) {
         this.saleRepository.delete(sale);
