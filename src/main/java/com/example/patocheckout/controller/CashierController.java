@@ -89,7 +89,7 @@ public class CashierController {
         cashierService.save(cashier);
         return new ResponseEntity<>(cashier, HttpStatus.OK);
     }
-
+  
     @GetMapping("close/{id}")
     public ResponseEntity<Cashier> closeCashier(@PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
