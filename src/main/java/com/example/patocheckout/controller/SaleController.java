@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.patocheckout.entities.Sale;
+import com.example.patocheckout.service.CashierService;
 import com.example.patocheckout.service.SaleService;
 
 @RestController
@@ -23,6 +24,8 @@ public class SaleController {
 
     @Autowired
     private SaleService saleService;
+    @Autowired
+    private CashierService cashierService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Sale> getSaleById(@PathVariable Long id) {
@@ -48,6 +51,13 @@ public class SaleController {
         if (sale == null)
             return ResponseEntity.notFound().build();
 
+        var cashier = cashierService.findSaleById(id);
+        
+        if (cashier != null) {
+            cashier.getSales().remove(sale);
+            cashierService.save(cashier);
+        }
+        
         saleService.deleteSaleById(id);
 
         return ResponseEntity.noContent().build();
