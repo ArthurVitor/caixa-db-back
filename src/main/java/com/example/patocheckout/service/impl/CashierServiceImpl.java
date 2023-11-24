@@ -36,8 +36,10 @@ public class CashierServiceImpl implements CashierService{
     }
 
     @Override
-    public void save(Cashier cashier) throws DataAccessException {
-        cashierRepository.save(cashier);
+    public Cashier save(Cashier cashier) throws DataAccessException {
+        Cashier created = cashierRepository.save(cashier);
+        System.out.println(created);
+        return created;
     }
 
     @Override

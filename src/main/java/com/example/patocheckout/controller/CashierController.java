@@ -1,6 +1,5 @@
 package com.example.patocheckout.controller;
 
-import java.math.BigDecimal;
 import java.util.Collection; 
 
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.patocheckout.entities.Cashier;
 import com.example.patocheckout.entities.Sale;
 import com.example.patocheckout.service.CashierService;
-import com.example.patocheckout.service.SaleService;
 
 @RestController
 @CrossOrigin("http://localhost:5173")
@@ -25,11 +23,9 @@ import com.example.patocheckout.service.SaleService;
 public class CashierController {
     
     private final CashierService cashierService;
-    private final SaleService saleService;
 
-    public CashierController(CashierService cashierService, SaleService saleService) {
+    public CashierController(CashierService cashierService) {
         this.cashierService = cashierService; 
-        this.saleService = saleService;
     }
 
     @GetMapping("all")
@@ -61,9 +57,8 @@ public class CashierController {
     public ResponseEntity<Cashier> saveCashier(@RequestBody Cashier cashier) {
         if(cashier == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-        }
-        cashierService.save(cashier);
-        return new ResponseEntity<>(HttpStatus.CREATED);  
+        } 
+        return new ResponseEntity<>(cashierService.save(cashier), HttpStatus.CREATED);  
     }
 
     @DeleteMapping("{id}")
@@ -83,7 +78,10 @@ public class CashierController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
         if(sale == null){
-              return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+        if(cashier.isOpen() == false) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
         } 
 
         cashier.getSales().add(sale); 
