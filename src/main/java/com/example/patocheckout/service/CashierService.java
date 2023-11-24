@@ -18,6 +18,4 @@ public interface CashierService {
 
     Cashier save(Cashier cashier) throws DataAccessException;
 
-    void delete(Cashier cashier) throws DataAccessException;
-
 }

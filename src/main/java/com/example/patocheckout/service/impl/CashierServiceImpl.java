@@ -43,11 +43,6 @@ public class CashierServiceImpl implements CashierService{
     }
 
     @Override
-    public void delete(Cashier cashier) throws DataAccessException {
-        cashierRepository.delete(cashier);
-    }
-
-    @Override
     public Cashier findSaleById(long id) throws DataAccessException {
         return cashierRepository.findBySalesId(id);
     }
