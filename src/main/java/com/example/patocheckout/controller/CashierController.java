@@ -57,7 +57,7 @@ public class CashierController {
         return new ResponseEntity<>(cashiers, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("save")
     public ResponseEntity<Cashier> saveCashier(@RequestBody Cashier cashier) {
         if(cashier == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
@@ -90,8 +90,8 @@ public class CashierController {
         cashierService.save(cashier);
         return new ResponseEntity<>(cashier, HttpStatus.OK);
     }
-
-    @PostMapping("close/{id}")
+  
+    @GetMapping("close/{id}")
     public ResponseEntity<Cashier> closeCashier(@PathVariable Long id){
         Cashier cashier = cashierService.findById(id);
          if(cashier == null ){
