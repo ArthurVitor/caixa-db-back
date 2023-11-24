@@ -14,7 +14,6 @@ public class CommandLineRunnerFile implements CommandLineRunner {
     @Autowired
     private PaymentMethodService paymentMethodService;
 
-    @Autowired
     public CommandLineRunnerFile(PaymentMethodService paymentMethodService) {
         this.paymentMethodService = paymentMethodService;
     }
